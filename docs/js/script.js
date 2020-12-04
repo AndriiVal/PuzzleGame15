@@ -5,11 +5,38 @@ $( document ).ready(function() {
 		left: 0
 	};
 
+	const cells = [];
+	cells.push(empty);
+
+	function move(index) {
+		console.log('move');
+		const cell = cells[index];
+		$(cell.element).css('left', empty.left*cellSize).css('top', empty.top*cellSize);
+		const emptyLeft = empty.left;
+		const emptyTop = empty.top;
+		empty.left = cell.left;
+		empty.top = cell.top;
+		cell.left = emptyLeft;
+		cell.top = emptyTop;
+	};
+
 	for (let i = 1; i <= 15; i++) {
 		const left = (i % 4);
 		const top = ((i - left) / 4);
-		const cell = $(document.createElement('div')).addClass("cell border border-primary rounded position-absolute").append(i).css("left", left*cellSize).css("top", top*cellSize);
+		const cell = $(document.createElement('div')).addClass("cell border border-primary rounded position-absolute text-center").append(i);
+		
+		cells.push({
+			left: left,
+			top: top,
+			element: cell
+		});
+
+		$(cell).css("left", left*cellSize).css("top", top*cellSize);
 
 		$('#field').append(cell);
-	}
+
+		$(cell).bind('click', function(){
+			move(i);
+		});
+	};
 });
