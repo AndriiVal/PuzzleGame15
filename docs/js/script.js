@@ -9,8 +9,13 @@ $( document ).ready(function() {
 	cells.push(empty);
 
 	function move(index) {
-		console.log('move');
 		const cell = cells[index];
+		const leftDiff = Math.abs(empty.left - cell.left);
+		const topDiff = Math.abs(empty.top - cell.top);
+		if (leftDiff + topDiff > 1) {
+			return;
+		};
+
 		$(cell.element).css('left', empty.left*cellSize).css('top', empty.top*cellSize);
 		const emptyLeft = empty.left;
 		const emptyTop = empty.top;
@@ -20,10 +25,13 @@ $( document ).ready(function() {
 		cell.top = emptyTop;
 	};
 
+	const numbers = [...Array(15).keys()].sort(()=>Math.random()-0.5);
+
 	for (let i = 1; i <= 15; i++) {
 		const left = (i % 4);
 		const top = ((i - left) / 4);
-		const cell = $(document.createElement('div')).addClass("cell border border-primary rounded position-absolute text-center").append(i);
+		const cell = $(document.createElement('div')).addClass("cell border border-primary rounded position-absolute text-center");
+		$(cell).append(numbers[i-1]+1);
 		
 		cells.push({
 			left: left,
