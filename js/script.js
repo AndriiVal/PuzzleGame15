@@ -1,5 +1,5 @@
 $( document ).ready(function() {
-	const cellSize = 100;
+	const cellSize = 80;
 	const empty = {
 		value: 16,
 		top: 3,
