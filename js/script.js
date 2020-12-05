@@ -33,28 +33,33 @@ $( document ).ready(function() {
 		};
 	};
 
-	const numbers = [...Array(15).keys()].sort(()=>Math.random()-0.5);
+	function runPuzzle() {
+		const numbers = [...Array(15).keys()].sort(()=>Math.random()-0.5);
+		for (let i = 0; i <= 14; i++) {
+			const value = numbers[i]+1;
+			const left = (i % 4);
+			const top = ((i - left) / 4);
+			const cell = $(document.createElement('div')).addClass("cell jumbotron p-2 border border-primary rounded position-absolute text-center");
+			$(cell).append(value);
+			
+			cells.push({
+				value: value,
+				left: left,
+				top: top,
+				element: cell
+			});
 
-	for (let i = 1; i <= 15; i++) {
-		const value = numbers[i-1]+1;
-		const left = ((i-1) % 4);
-		const top = ((i - left - 1) / 4);
-		const cell = $(document.createElement('div')).addClass("cell jumbotron p-2 border border-primary rounded position-absolute text-center");
-		$(cell).append(value);
-		
-		cells.push({
-			value: value,
-			left: left,
-			top: top,
-			element: cell
-		});
+			$(cell).css("left", left*cellSize).css("top", top*cellSize);
 
-		$(cell).css("left", left*cellSize).css("top", top*cellSize);
+			$('#field').append(cell);
 
-		$('#field').append(cell);
-
-		$(cell).bind('click', function(){
-			move(i);
-		});
+			$(cell).bind('click', function(){
+				move(i+1);
+			});
+		};
 	};
+	$('#refresh').click(function() {
+    	location.reload();
+	});
+	runPuzzle();
 });
