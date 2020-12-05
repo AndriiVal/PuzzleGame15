@@ -1,6 +1,7 @@
 $( document ).ready(function() {
 	const cellSize = 100;
 	const empty = {
+		value: 0,
 		top: 0,
 		left: 0
 	};
@@ -23,17 +24,26 @@ $( document ).ready(function() {
 		empty.top = cell.top;
 		cell.left = emptyLeft;
 		cell.top = emptyTop;
+
+		const isFinished = cells.every(cell => {
+			return cell.value -1 === cell.top * 4 + cell.left;
+		});
+		if (isFinished) {
+			alert('You won!');
+		};
 	};
 
 	const numbers = [...Array(15).keys()].sort(()=>Math.random()-0.5);
 
 	for (let i = 1; i <= 15; i++) {
+		const value = numbers[i-1]+1;
 		const left = (i % 4);
 		const top = ((i - left) / 4);
-		const cell = $(document.createElement('div')).addClass("cell border border-primary rounded position-absolute text-center");
-		$(cell).append(numbers[i-1]+1);
+		const cell = $(document.createElement('div')).addClass("cell jumbotron p-2 border border-primary rounded position-absolute text-center");
+		$(cell).append(value);
 		
 		cells.push({
+			value: value,
 			left: left,
 			top: top,
 			element: cell
