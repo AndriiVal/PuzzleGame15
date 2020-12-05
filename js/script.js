@@ -1,9 +1,9 @@
 $( document ).ready(function() {
 	const cellSize = 100;
 	const empty = {
-		value: 0,
-		top: 0,
-		left: 0
+		value: 16,
+		top: 3,
+		left: 3
 	};
 
 	const cells = [];
@@ -26,7 +26,7 @@ $( document ).ready(function() {
 		cell.top = emptyTop;
 
 		const isFinished = cells.every(cell => {
-			return cell.value -1 === cell.top * 4 + cell.left;
+			return cell.value === cell.top * 4 + cell.left+1;
 		});
 		if (isFinished) {
 			alert('You won!');
@@ -37,8 +37,8 @@ $( document ).ready(function() {
 
 	for (let i = 1; i <= 15; i++) {
 		const value = numbers[i-1]+1;
-		const left = (i % 4);
-		const top = ((i - left) / 4);
+		const left = ((i-1) % 4);
+		const top = ((i - left - 1) / 4);
 		const cell = $(document.createElement('div')).addClass("cell jumbotron p-2 border border-primary rounded position-absolute text-center");
 		$(cell).append(value);
 		
