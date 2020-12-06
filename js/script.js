@@ -58,8 +58,21 @@ $( document ).ready(function() {
 			});
 		};
 	};
+
+	function refreshPuzzle() {
+		$('#field').html('');
+    	empty.value = 16;
+		empty.top = 3;
+		empty.left = 3;
+
+		cells.length=0;
+		cells.push(empty);
+    	runPuzzle();
+	};
+
 	$('#refresh').click(function() {
-    	location.reload();
+    	refreshPuzzle();
 	});
+
 	runPuzzle();
 });
