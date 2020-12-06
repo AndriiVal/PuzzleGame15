@@ -4,4 +4,5 @@ Puzzle game "15" using JQuery and Bootstrap 4
 
 ## Live Demo
 [Puzzle Game 15 demo](https://andriival.github.io/PuzzleGame15)
+![png](./img/won.png)
 ![png](./img/finish.png)

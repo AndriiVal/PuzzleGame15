@@ -29,7 +29,7 @@ $( document ).ready(function() {
 			return cell.value === cell.top * 4 + cell.left+1;
 		});
 		if (isFinished) {
-			alert('You won!');
+			$('#modal-puzzle').modal({show: true});
 		};
 	};
 
@@ -71,6 +71,10 @@ $( document ).ready(function() {
 	};
 
 	$('#refresh').click(function() {
+    	refreshPuzzle();
+	});
+
+	$('#refresh-m').click(function() {
     	refreshPuzzle();
 	});
 
