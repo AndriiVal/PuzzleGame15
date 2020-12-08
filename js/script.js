@@ -4,7 +4,7 @@ $( document ).ready(function() {
 		value: 16,
 		top: 3,
 		left: 3
-	};
+	}
 
 	const cells = [];
 	cells.push(empty);
@@ -15,7 +15,7 @@ $( document ).ready(function() {
 		const topDiff = Math.abs(empty.top - cell.top);
 		if (leftDiff + topDiff > 1) {
 			return;
-		};
+		}
 
 		$(cell.element).css('left', empty.left*cellSize).css('top', empty.top*cellSize);
 		const emptyLeft = empty.left;
@@ -30,8 +30,8 @@ $( document ).ready(function() {
 		});
 		if (isFinished) {
 			$('#modal-puzzle').modal({show: true});
-		};
-	};
+		}
+	}
 
 	function runPuzzle() {
 		const numbers = [...Array(15).keys()].sort(()=>Math.random()-0.5);
@@ -56,8 +56,8 @@ $( document ).ready(function() {
 			$(cell).bind('click', function(){
 				move(i+1);
 			});
-		};
-	};
+		}
+	}
 
 	function refreshPuzzle() {
 		$('#field').html('');
@@ -68,7 +68,7 @@ $( document ).ready(function() {
 		cells.length=0;
 		cells.push(empty);
     	runPuzzle();
-	};
+	}
 
 	$('#refresh').click(function() {
     	refreshPuzzle();
